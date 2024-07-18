@@ -1,0 +1,10 @@
+{
+  "version": "v1",
+  "packages": {
+    "lib": {
+      "signature": "6ab689be6ffb355a95c745df72a69f44",
+      "file": true,
+      "replaced": "file:../lib"
+    }
+  }
+}
