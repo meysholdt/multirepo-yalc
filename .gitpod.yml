@@ -1,0 +1,14 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: App
+    init: |
+      ./build.sh
+    command: |
+      ./run.sh
+
+ports:
+  - name: App
+    port: 3000
+    onOpen: open-preview
