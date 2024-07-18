@@ -6,6 +6,7 @@ tasks:
     init: |
       ./build.sh
     command: |
+      export PATH="$PATH:/$(pwd)/scripts"
       ./run.sh
 
 ports:
