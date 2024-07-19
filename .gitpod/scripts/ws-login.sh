@@ -20,3 +20,9 @@ if ! is_gitpod_logged_in; then
     # Call gitpod login with the provided token
     gitpod login --token "$WS_TOKEN"
 fi
+
+# Check again if Gitpod is logged in after attempting login
+if ! is_gitpod_logged_in; then
+    echo "Gitpod login failed. Exiting with code 1."
+    exit 1
+fi

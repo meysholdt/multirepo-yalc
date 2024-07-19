@@ -1,8 +1,17 @@
 {
-	"folders": [
-		{
-			"path": "/workspace/multirepo-yalc"
-		}
-	],
-	"settings": {}
+  "folders": [
+	{
+		"path": "/workspace/multirepo-yalc"
+	},
+	{
+		"path": "../.."
+	},
+	{
+		"path": "../../peers/meysholdt-multirepoyalc-n9c33pipyog"
+	},
+	{
+		"path": "../../peers/sveneffting-2048intermi-ctxxtx9kba4"
+	}
+],
+  "settings": {}
 }

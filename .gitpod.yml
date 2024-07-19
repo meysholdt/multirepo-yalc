@@ -11,9 +11,9 @@ tasks:
       cd app
       node server.js
 
-  - name: Terminal
+  - name: Workspace-Mounts
     command: |
-      echo "Hello! Run "ws-sync.sh" to mount other running workspaces into this workspace."
+      ws-sync.sh --interval 10
 
 ports:
   - name: App
