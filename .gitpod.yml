@@ -1,13 +1,17 @@
 image:
-  file: .gitpod.Dockerfile
+  file: .gitpod/.gitpod.Dockerfile
+  context: .gitpod
 
 tasks:
   - name: App
     init: |
       ./build.sh
     command: |
-      export PATH="$PATH:/$(pwd)/scripts"
-      ./run.sh
+      node server.js
+
+  - name: Terminal
+    command: |
+      ls -l scripts/
 
 ports:
   - name: App
