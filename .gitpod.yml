@@ -1,10 +1,12 @@
 image:
   file: .gitpod/.gitpod.Dockerfile
   context: .gitpod
+workspaceLocation: monorepo_slicing/.gitpod/ws.code-workspace
 
 tasks:
   - name: App
     init: |
+      cp .gitpod/ws-default.code-workspace .gitpod/ws.code-workspace
       ./build.sh
     command: |
       node server.js
