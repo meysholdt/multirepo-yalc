@@ -10,6 +10,16 @@ if [ -z "$1" ]; then
 fi
 
 workspaceID=$1
+
+# Obtain the repository name
+repo_info=$(gitpod workspace get "$workspaceID")
+repo_name=$(echo "$repo_info" | grep -oP '(?<=Repository: ).*/\K.*')
+
+if [ -z "$repo_name" ]; then
+    echo "Failed to obtain repository name for workspace $workspaceID"
+    exit 1
+fi
+
 mount_point="/workspace/peers/${workspaceID}"
 
 # Create the mount point directory if it doesn't exist
@@ -26,7 +36,7 @@ ssh_user_host=$(echo "$ssh_command" | awk '{print $1}')
 ssh_options=$(echo "$ssh_command" | awk '{for (i=2; i<=NF; i++) printf $i " "}')
 
 # Mount the filesystem using sshfs
-sshfs "$ssh_user_host:/workspace" "$mount_point" $ssh_options
+sshfs "$ssh_user_host:/workspace/$repo_name" "$mount_point" $ssh_options
 
 # Check if the mount was successful
 if [ $? -eq 0 ]; then

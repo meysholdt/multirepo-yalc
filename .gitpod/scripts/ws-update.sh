@@ -2,7 +2,9 @@
 
 # set -x
 
-ws-login.sh
+cd "$(dirname "${BASH_SOURCE[0]}")"
+
+./ws-login.sh
 
 # Function to get the list of running workspaces
 get_running_workspaces() {
@@ -24,7 +26,7 @@ contains_element() {
 main() {
   local current_workspace_id="$GITPOD_WORKSPACE_ID"
   local running_workspaces=($(get_running_workspaces))
-  local mounted_workspaces=($(ws-list.sh))
+  local mounted_workspaces=($(./ws-list.sh))
 
   # Ensure /workspace/peers/ directory exists
   mkdir -p /workspace/peers/
@@ -35,7 +37,7 @@ main() {
       echo "Skipping mount for current workspace: $workspace_id"
     elif ! contains_element "$workspace_id" "${mounted_workspaces[@]}"; then
       echo "Mounting new workspace: $workspace_id"
-      ws-mount.sh "$workspace_id"
+      ./ws-mount.sh "$workspace_id"
     else
       echo "Workspace already mounted: $workspace_id"
     fi
@@ -45,7 +47,7 @@ main() {
   for workspace_id in "${mounted_workspaces[@]}"; do
     if ! contains_element "$workspace_id" "${running_workspaces[@]}"; then
       echo "Unmounting workspace no longer running: $workspace_id"
-      ws-umount.sh "$workspace_id"
+      ./ws-umount.sh "$workspace_id"
     else
       echo "Workspace still running: $workspace_id"
     fi
