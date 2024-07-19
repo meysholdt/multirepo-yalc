@@ -1,5 +1,7 @@
 FROM gitpod/workspace-node
 
+ENV REBUILD=acb5b0bf2510171cf43df6cd97da9698af5b717054b6b2ae3e459f79ef5fe342
+
 USER root
 
 COPY scripts/* /usr/bin/
