@@ -12,7 +12,7 @@ tasks:
 
   - name: Terminal
     command: |
-      echo "Hello! Run `ws-sync.sh` to mount other running workspaces into this workspace."
+      echo "Hello! Run "ws-sync.sh" to mount other running workspaces into this workspace."
 
 ports:
   - name: App
