@@ -49,7 +49,6 @@ if [ $? -eq 0 ]; then
         # Backup the original file
         cp "$workspace_file" "$workspace_file.bak"
 
-        # Add mount_point to git.ignoredRepositories using jq
         jq --arg mp "$mount_point" '.settings["git.ignoredRepositories"] += [$mp]' "$workspace_file" > "${workspace_file}.tmp" && mv "${workspace_file}.tmp" "$workspace_file"
         
         echo "Added $mount_point to git.ignoredRepositories in $workspace_file"
