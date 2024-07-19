@@ -1,12 +1,11 @@
 image:
   file: .gitpod/.gitpod.Dockerfile
   context: .gitpod
-workspaceLocation: monorepo_slicing/.gitpod/ws.code-workspace
+workspaceLocation: monorepo_slicing/.gitpod/ws-default.code-workspace
 
 tasks:
   - name: App
     init: |
-      cp .gitpod/ws-default.code-workspace .gitpod/ws.code-workspace
       ./build.sh
     command: |
       node server.js
@@ -14,7 +13,7 @@ tasks:
   - name: Terminal
     command: |
       read -p "To access other workspaces, please create a token at $GITPOD_HOST/user/tokens and enter it here: " GITPOD_TOKEN
-      gitpod login
+      gitpod login --token "$GITPOD_TOKEN"
 
 ports:
   - name: App
