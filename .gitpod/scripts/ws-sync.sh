@@ -2,6 +2,8 @@
 
 # set -x
 
+ws-login.sh
+
 # Function to get the list of running workspaces
 get_running_workspaces() {
   gitpod workspace list -r --field id
