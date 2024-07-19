@@ -13,6 +13,5 @@ RUN curl -o /usr/bin/gitpod https://gitpod.io/static/bin/gitpod-cli-linux-amd64 
 
 USER gitpod
 
-RUN npm install -g yalc
-
-ENV YALC_STORE_FOLDER=/workspace/.yalc
+RUN npm install -g yalc \
+ && ln -s /workspace/.yalc /home/gitpod/.yalc
