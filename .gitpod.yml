@@ -8,6 +8,7 @@ tasks:
     init: |
       ./build.sh
     command: |
+      cd app
       node server.js
 
   - name: Terminal
