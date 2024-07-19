@@ -12,7 +12,10 @@ tasks:
 
   - name: Terminal
     command: |
-      read -p "To access other workspaces, please create a token at $GITPOD_HOST/user/tokens and enter it here: " GITPOD_TOKEN
+      if [ -z "$GITPOD_TOKEN" ]; then
+        read -p "To access other workspaces, please create a token at $GITPOD_HOST/user/tokens and enter it here: " GITPOD_TOKEN
+        gp env GITPOD_TOKEN="$GITPOD_TOKEN"
+      fi
       gitpod login --token "$GITPOD_TOKEN"
 
 ports:
