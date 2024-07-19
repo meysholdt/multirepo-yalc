@@ -1,7 +1,7 @@
 image:
   file: .gitpod/.gitpod.Dockerfile
   context: .gitpod
-workspaceLocation: monorepo_slicing/.gitpod/ws-default.code-workspace
+workspaceLocation: multirepo-yalc/.gitpod/ws-default.code-workspace
 
 tasks:
   - name: App
