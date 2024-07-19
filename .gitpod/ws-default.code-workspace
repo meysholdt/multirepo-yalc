@@ -2,9 +2,10 @@
   "folders": [
     {
       "path": "/workspace/multirepo-yalc"
-    },
+    }
   ],
   "settings": {
-    "git.autoRepositoryDetection": false
+    "git.autoRepositoryDetection": false,
+    "git.ignoredRepositories": []
   }
 }
