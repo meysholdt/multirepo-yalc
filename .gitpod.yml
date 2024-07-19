@@ -13,7 +13,8 @@ tasks:
 
   - name: Terminal
     command: |
-      ls -l scripts/
+      read -p "To access other workspaces, please create a token at $GITPOD_HOST/user/tokens and enter it here: " GITPOD_TOKEN
+      gitpod login
 
 ports:
   - name: App
