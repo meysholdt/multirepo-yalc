@@ -1,3 +1,4 @@
 node_modules
 .yalc
 ws.code-workspace
+*.bak

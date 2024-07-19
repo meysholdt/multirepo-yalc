@@ -42,21 +42,23 @@ sshfs "$ssh_user_host:/workspace/$repo_name" "$mount_point" $ssh_options
 if [ $? -eq 0 ]; then
     echo "Workspace $workspaceID mounted successfully at $mount_point"
 
-    # Update the git.ignoredRepositories in /workspace/multirepo-yalc/.gitpod/ws-default.code-workspace
+    # Update the git.ignoredRepositories and folders in /workspace/multirepo-yalc/.gitpod/ws-default.code-workspace
     workspace_file="/workspace/multirepo-yalc/.gitpod/ws-default.code-workspace"
 
     if [ -f "$workspace_file" ]; then
         # Backup the original file
         cp "$workspace_file" "$workspace_file.bak"
 
+        # Add the mount_point to git.ignoredRepositories
         jq --arg mp "$mount_point" '.settings["git.ignoredRepositories"] += [$mp]' "$workspace_file" > "${workspace_file}.tmp" && mv "${workspace_file}.tmp" "$workspace_file"
-        
-        echo "Added $mount_point to git.ignoredRepositories in $workspace_file"
+
+        # Add the mount_point to folders
+        jq --arg mp "$mount_point" '.folders += [{"path": $mp}]' "$workspace_file" > "${workspace_file}.tmp" && mv "${workspace_file}.tmp" "$workspace_file"
+
+        echo "Added $mount_point to git.ignoredRepositories and folders in $workspace_file"
     else
         echo "Workspace file $workspace_file does not exist"
     fi
-
-    code --add "$mount_point"
 else
     echo "Failed to mount workspace $workspaceID"
     exit 1
